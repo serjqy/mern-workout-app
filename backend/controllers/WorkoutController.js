@@ -35,8 +35,8 @@ export const createWorkout = async (req, res) => {
       load,
     });
     res.status(200).json(workout);
-  } catch (err) {
-    res.status(400).json({ err: err.message });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
   }
 };
 

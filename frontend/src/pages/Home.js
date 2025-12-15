@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 // Components
 import WorkoutCard from "../components/WorkoutCard";
+import WorkoutForm from "../components/WorkoutForm";
 
 const Home = () => {
   const [Workouts, setWorkouts] = useState(null);
@@ -19,13 +20,14 @@ const Home = () => {
     fetchWorkouts();
   }, []);
   return (
-    <div className="Home">
+    <div className="home">
       <div className="workouts">
         {Workouts &&
           Workouts.map((workout) => (
             <WorkoutCard key={workout._id} workout={workout} />
           ))}
       </div>
+      <WorkoutForm />
     </div>
   );
 };
