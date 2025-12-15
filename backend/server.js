@@ -1,17 +1,35 @@
 import express from "express";
+import mongoose from "mongoose";
 import dotenv from "dotenv";
+
+import workoutRoutes from "./routes/workouts.js";
 
 dotenv.config(); // Load .env variables
 
 // Express App
 const app = express();
 
-// Routes
-app.get("/", (req, res) => {
-  res.json({ msg: "Welcome!" });
+// Allow access to req.body (e.g. passed data)
+app.use(express.json());
+
+// Simple Middleware
+app.use((req, res, next) => {
+  console.log(req.path, req.method);
+  next();
 });
 
-// Listen for routes
-app.listen(process.env.PORT, () => {
-  "Server UP!";
-});
+// Routes
+app.use("/api/workouts", workoutRoutes);
+
+// Connect to DB
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    // Listen for requests (only after we're connected to DB)
+    app.listen(process.env.PORT, () => {
+      console.log("DB Connected & Server on port", process.env.PORT);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
