@@ -1,21 +1,21 @@
 import express from "express";
 
+import {
+  createWorkout,
+  getWorkout,
+  getWorkouts,
+} from "../controllers/WorkoutController.js";
+
 const router = express.Router();
 
 // Get All Workouts (localhost:8000/api/workouts)
-router.get("/", (req, res) => {
-  res.json({ mssg: "GET All Workouts" });
-});
+router.get("/", getWorkouts);
 
 // Get Single Workout (localhost:8000/api/workouts/id)
-router.get("/:id", (req, res) => {
-  res.json({ mssg: "GET Single Workout" });
-});
+router.get("/:id", getWorkout);
 
 // Create New Workout (localhost:8000/api/workouts)
-router.post("/", (req, res) => {
-  res.json({ mssg: "POST New Workout" });
-});
+router.post("/", createWorkout);
 
 // Delete a Workout (localhost:8000/api/workouts/id)
 router.delete("/:id", (req, res) => {
