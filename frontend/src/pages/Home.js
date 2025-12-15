@@ -19,11 +19,17 @@ const Home = () => {
     };
 
     fetchWorkouts();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="home">
       <div className="workouts">
+        {!workouts && <h1>Loading...</h1>}
+
+        {workouts && workouts.length === 0 && (
+          <h1>No Workouts at the Moment</h1>
+        )}
+        
         {workouts &&
           workouts.map((workout) => (
             <WorkoutCard key={workout._id} workout={workout} />
