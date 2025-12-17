@@ -1,4 +1,9 @@
 import User from "../models/userModel.js";
+import jwt from "jsonwebtoken";
+
+const createToken = (_id) => {
+  return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "3d" });
+};
 
 // Login User
 export const loginUser = async (req, res) => {
@@ -13,7 +18,10 @@ export const registerUser = async (req, res) => {
   try {
     const user = await User.register(email, password);
 
-    res.status(200).json({ email, user });
+    //   Create a token
+    const token = createToken(user._id);
+
+    res.status(200).json({ email, token });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
