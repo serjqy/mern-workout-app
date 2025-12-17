@@ -5,7 +5,15 @@ const Navbar = () => {
   return (
     <header>
       <div className="container">
-        <Link to="/">Workout Buddies</Link>
+        <Link to="/">
+          <h1>Workout Buddies</h1>
+        </Link>
+        <nav>
+          <div>
+            <Link to="/login">Login</Link>
+            <Link to="/register">Register</Link>
+          </div>
+        </nav>
       </div>
     </header>
   );
