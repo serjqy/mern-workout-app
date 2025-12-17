@@ -1,4 +1,5 @@
 import express from "express";
+import requireAuth from "../middleware/requireauth.js";
 
 import {
   createWorkout,
@@ -9,6 +10,9 @@ import {
 } from "../controllers/WorkoutController.js";
 
 const router = express.Router();
+
+// Require Auth for all workout routes
+router.use(requireAuth);
 
 // Get All Workouts (localhost:8000/api/workouts)
 router.get("/", getWorkouts);
