@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 
 import workoutRoutes from "./routes/workouts.js";
+import userRoutes from "./routes/user.js";
 
 dotenv.config(); // Load .env variables
 
@@ -20,6 +21,8 @@ app.use((req, res, next) => {
 
 // Routes
 app.use("/api/workouts", workoutRoutes);
+
+app.use("/api/user", userRoutes);
 
 // Connect to DB
 mongoose

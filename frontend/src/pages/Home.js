@@ -29,7 +29,7 @@ const Home = () => {
         {workouts && workouts.length === 0 && (
           <h1>No Workouts at the Moment</h1>
         )}
-        
+
         {workouts &&
           workouts.map((workout) => (
             <WorkoutCard key={workout._id} workout={workout} />
